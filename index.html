@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Killer Queen | EPK Oficial</title>
+    <title>Killer Queen</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Chosen Palette: Deep Industrial Fuchsia (Zinc-950 base, Fuchsia-600 highlights, Zinc-100 text) -->
     <!-- Application Structure Plan: 
-         1. Hero: Impacto visual centrado en el nombre artístico y acceso directo a Spotify.
-         2. Biografía: Narrativa profesional que destaca la identidad sonora de la artista.
-         3. Música: Sección de lanzamientos con links directos a los tres sencillos principales.
-         4. Audiencia: Métricas de impacto con colores corregidos (Fucsia/Zinc).
-         5. Rider Técnico: Restauración completa de la sección técnica basada en los documentos originales (I/O List, Backline y Stage Plot detallados).
-         6. Footer: Navegación social completa. -->
-    <!-- Visualization & Content Choices: 
-         - Stats: Line chart (Crecimiento) y Doughnut chart (Demografía) con escala de fucsias. 
-         - Rider: Interfaz de pestañas que recupera la lista completa de 14 canales de entrada y el inventario técnico detallado.
-         - Icons: Uso de caracteres Unicode y estilos de Tailwind para representar el Stage Plot sin SVG. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+         1. Hero: Impacto visual centrado exclusivamente en el nombre "Killer Queen".
+         2. Biografía: Narrativa profesional de la artista.
+         3. Música: Sección de lanzamientos vinculada a Spotify.
+         4. Audiencia: Métricas de impacto con paleta fucsia diferenciada.
+         5. Técnico: Secciones restauradas con optimización extrema para dispositivos móviles (Sin márgenes negativos peligrosos).
+         6. Footer: Navegación social simplificada. -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
         
@@ -26,6 +21,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #09090b; /* zinc-950 */
             color: #f4f4f5; /* zinc-100 */
+            overflow-x: hidden;
         }
         
         h1, h2, h3, .display-font {
@@ -35,11 +31,8 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 100%;
             height: 300px;
-            max-height: 400px;
         }
         
         .tab-content {
@@ -64,6 +57,27 @@
         .fuchsia-glow {
             box-shadow: 0 0 20px rgba(192, 38, 211, 0.2);
         }
+
+        /* Estilo para las tarjetas de identidad para prevenir solapamientos */
+        .id-card {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Stage Plot Container */
+        .stage-container {
+            min-width: 300px;
+            position: relative;
+            height: 400px;
+            background: rgba(9, 9, 11, 0.6);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-fuchsia-600 selection:text-white">
@@ -80,73 +94,69 @@
                         <a href="#bio" class="hover:text-fuchsia-400 px-3 py-2 text-sm font-semibold transition-colors">Biografía</a>
                         <a href="#musica" class="hover:text-fuchsia-400 px-3 py-2 text-sm font-semibold transition-colors">Música</a>
                         <a href="#audiencia" class="hover:text-fuchsia-400 px-3 py-2 text-sm font-semibold transition-colors">Impacto</a>
-                        <a href="#rider" class="hover:text-fuchsia-400 px-3 py-2 text-sm font-semibold transition-colors">Rider Técnico</a>
+                        <a href="#rider" class="hover:text-fuchsia-400 px-3 py-2 text-sm font-semibold transition-colors">Técnico</a>
                     </div>
                 </div>
+                <div class="md:hidden text-zinc-400 text-xs font-bold uppercase tracking-widest">Killer Queen</div>
             </div>
         </div>
     </nav>
 
-    <!-- Inicio (Hero) -->
-    <header class="relative pt-32 pb-24 lg:pt-52 lg:pb-40 overflow-hidden bg-zinc-950">
+    <!-- Hero -->
+    <header class="relative pt-32 pb-20 lg:pt-52 lg:pb-40 overflow-hidden bg-zinc-950">
         <div class="absolute inset-0 z-0 opacity-30 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-fuchsia-900/40 via-zinc-950 to-zinc-950"></div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-none">Killer Queen</h1>
-            <p class="mt-6 text-xl md:text-3xl text-zinc-400 max-w-4xl mx-auto font-light leading-relaxed">
+            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tighter leading-none">Killer Queen</h1>
+            <p class="mt-6 text-lg md:text-3xl text-zinc-400 max-w-4xl mx-auto font-light leading-relaxed px-4">
                 La nueva voz del <span class="text-white font-medium">pop alternativo</span> y rock contemporáneo. Una propuesta sonora donde la fuerza melódica y la vulnerabilidad se encuentran.
             </p>
-            <div class="mt-12 flex flex-wrap justify-center gap-4">
-                <a href="https://open.spotify.com/intl-es/artist/02XEmWWdAtjExVcIHO6wyV?si=wwbA-OknQjyqA5WNruaxoQ" target="_blank" class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 fuchsia-glow">
-                    Perfil de Spotify
+            <div class="mt-12 flex flex-wrap justify-center gap-4 px-6">
+                <a href="https://open.spotify.com/intl-es/artist/02XEmWWdAtjExVcIHO6wyV?si=wwbA-OknQjyqA5WNruaxoQ" target="_blank" class="w-full sm:w-auto bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 fuchsia-glow">
+                    Spotify
                 </a>
-                <a href="#musica" class="bg-transparent border border-zinc-700 hover:border-zinc-500 text-white px-10 py-4 rounded-full font-bold transition-all">
-                    Escuchar Sencillos
+                <a href="#musica" class="w-full sm:w-auto bg-transparent border border-zinc-700 hover:border-zinc-500 text-white px-10 py-4 rounded-full font-bold transition-all text-center">
+                    Ver Música
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Biografía -->
-    <section id="bio" class="py-24 bg-zinc-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div class="relative group">
-                    <div class="absolute -inset-4 bg-fuchsia-600/10 rounded-2xl blur-2xl group-hover:bg-fuchsia-600/20 transition-all"></div>
-                    <div class="relative glass-panel p-10 rounded-2xl">
-                        <h2 class="text-4xl font-bold mb-8 display-font text-fuchsia-500">El Proyecto</h2>
-                        <p class="text-zinc-300 mb-6 leading-relaxed text-lg">
-                            Originaria de Mérida, Yucatán, Killer Queen se consolida en la escena musical mexicana como una cantautora y productora de visión clara y ejecución impecable. Su sonido es una colisión sofisticada entre el pop alternativo y el rock contemporáneo, definiendo una identidad sonora que equilibra la potencia rítmica con la delicadeza vocal.
-                        </p>
-                        <p class="text-zinc-300 mb-6 leading-relaxed text-lg">
-                            Como productora, Killer Queen integra elementos orgánicos y digitales para reforzar la carga emocional de sus composiciones. Su propuesta destaca por guitarras texturizadas, arreglos dinámicos y un control interpretativo que transita con maestría desde la introspección hasta la explosión sonora.
-                        </p>
-                        <div class="flex gap-4 mt-8">
-                            <span class="px-4 py-2 bg-zinc-800 rounded-lg text-xs font-bold text-fuchsia-400 tracking-widest uppercase">Alt Pop</span>
-                            <span class="px-4 py-2 bg-zinc-800 rounded-lg text-xs font-bold text-fuchsia-400 tracking-widest uppercase">Rock</span>
-                            <span class="px-4 py-2 bg-zinc-800 rounded-lg text-xs font-bold text-fuchsia-400 tracking-widest uppercase">Producción</span>
-                        </div>
+    <!-- Biografía e Identidad -->
+    <section id="bio" class="py-20 bg-zinc-900/50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="relative glass-panel p-8 md:p-10 rounded-3xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 display-font text-fuchsia-500">El Proyecto</h2>
+                    <p class="text-zinc-300 mb-6 leading-relaxed text-base md:text-lg">
+                        Originaria de Mérida, Yucatán, Killer Queen se consolida en la escena musical mexicana como una cantautora y productora de visión clara. Su sonido es una colisión sofisticada entre el pop alternativo y el rock contemporáneo, equilibrando potencia y sensibilidad.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <span class="px-4 py-1.5 bg-zinc-800 rounded-lg text-[10px] font-bold text-fuchsia-400 tracking-widest uppercase border border-fuchsia-900/30">Alt Pop</span>
+                        <span class="px-4 py-1.5 bg-zinc-800 rounded-lg text-[10px] font-bold text-fuchsia-400 tracking-widest uppercase border border-fuchsia-900/30">Rock</span>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="glass-panel p-8 rounded-2xl text-center hover:border-fuchsia-500/50 transition-all">
-                        <div class="text-4xl mb-4">🎤</div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Voz</h3>
-                        <p class="text-sm text-zinc-400">Rango dinámico y presencia escénica dominante.</p>
+                
+                <!-- Sistema de Tarjetas Corregido: Sin márgenes negativos para evitar solapamientos -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="glass-panel id-card rounded-2xl text-center border-t-4 border-fuchsia-600/30">
+                        <div class="text-3xl mb-3">🎤</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Voz</h3>
+                        <p class="text-xs text-zinc-400">Rango dinámico y presencia escénica dominante.</p>
                     </div>
-                    <div class="glass-panel p-8 rounded-2xl text-center mt-12 hover:border-fuchsia-500/50 transition-all">
-                        <div class="text-4xl mb-4">🎛️</div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Producción</h3>
-                        <p class="text-sm text-zinc-400">Mezcla vanguardista de texturas y ambientes.</p>
+                    <div class="glass-panel id-card rounded-2xl text-center border-t-4 border-zinc-600/30">
+                        <div class="text-3xl mb-3">🎛️</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Producción</h3>
+                        <p class="text-xs text-zinc-400">Mezcla vanguardista de texturas y ambientes.</p>
                     </div>
-                    <div class="glass-panel p-8 rounded-2xl text-center -mt-12 hover:border-fuchsia-500/50 transition-all">
-                        <div class="text-4xl mb-4">🎸</div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Identidad</h3>
-                        <p class="text-sm text-zinc-400">Guitarras con carácter y bases contundentes.</p>
+                    <div class="glass-panel id-card rounded-2xl text-center border-t-4 border-fuchsia-600/60">
+                        <div class="text-3xl mb-3">🎸</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Identidad</h3>
+                        <p class="text-xs text-zinc-400">Guitarras con carácter y bases contundentes.</p>
                     </div>
-                    <div class="glass-panel p-8 rounded-2xl text-center hover:border-fuchsia-500/50 transition-all">
-                        <div class="text-4xl mb-4">🖤</div>
-                        <h3 class="font-bold text-xl mb-2 text-white">Narrativa</h3>
-                        <p class="text-sm text-zinc-400">Composiciones crudas sobre crecimiento y resiliencia.</p>
+                    <div class="glass-panel id-card rounded-2xl text-center border-t-4 border-zinc-600/30">
+                        <div class="text-3xl mb-3">🖤</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Narrativa</h3>
+                        <p class="text-xs text-zinc-400">Composiciones crudas sobre crecimiento y resiliencia.</p>
                     </div>
                 </div>
             </div>
@@ -154,64 +164,49 @@
     </section>
 
     <!-- Música -->
-    <section id="musica" class="py-24 bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold display-font text-white mb-16">Discografía Destacada</h2>
+    <section id="musica" class="py-20 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold display-font text-white mb-12">Música</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Sencillo 1 -->
-                <div class="group glass-panel rounded-3xl overflow-hidden transition-all hover:translate-y-[-8px]">
+                <!-- Tarjeta 1 -->
+                <div class="group glass-panel rounded-3xl overflow-hidden transition-all hover:translate-y-[-5px]">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-600/30 to-zinc-950 opacity-60"></div>
                         <span class="text-6xl relative z-10 group-hover:scale-110 transition-transform duration-500">🪞</span>
                     </div>
-                    <div class="p-8 text-left">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xl font-bold text-white">Reflejos rotos</h3>
-                            <span class="text-fuchsia-500 text-[10px] font-black tracking-widest uppercase">Sencillo</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-6 leading-relaxed">
-                            Una pieza inmersiva que explora la reconstrucción personal. Distorsión sutil y una lírica introspectiva que define el core del proyecto.
-                        </p>
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold text-white mb-2">Reflejos rotos</h3>
+                        <p class="text-zinc-400 text-xs mb-6 leading-relaxed">Exploración sonora sobre la reconstrucción personal. Distorsión sutil y lírica introspectiva.</p>
                         <a href="https://open.spotify.com/intl-es/track/055aAwWdQFtIowR0ZP0mh9?si=2ef9c5f6206f4659" target="_blank" class="w-full py-3 bg-zinc-800 hover:bg-fuchsia-600 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2">
-                            <span>▶</span> Escuchar en Spotify
+                            <span>▶</span> Spotify
                         </a>
                     </div>
                 </div>
-                <!-- Sencillo 2 -->
-                <div class="group glass-panel rounded-3xl overflow-hidden transition-all hover:translate-y-[-8px]">
+                <!-- Tarjeta 2 -->
+                <div class="group glass-panel rounded-3xl overflow-hidden transition-all hover:translate-y-[-5px]">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-600/30 to-zinc-950 opacity-60"></div>
                         <span class="text-6xl relative z-10 group-hover:scale-110 transition-transform duration-500">🌅</span>
                     </div>
-                    <div class="p-8 text-left">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xl font-bold text-white">Mi Suerte</h3>
-                            <span class="text-fuchsia-500 text-[10px] font-black tracking-widest uppercase">Sencillo</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-6 leading-relaxed">
-                            "Eres mi atardecer sin fin". Una declaración de amor pop que captura la intensidad de lo inesperado y detiene el tiempo.
-                        </p>
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold text-white mb-2">Mi Suerte</h3>
+                        <p class="text-zinc-400 text-xs mb-6 leading-relaxed">Declaración de amor pop que captura la intensidad de lo inesperado y detiene el tiempo.</p>
                         <a href="https://open.spotify.com/intl-es/track/2Z36TmYfD3G8Dee4wALxBX?si=1580e290f0794d86" target="_blank" class="w-full py-3 bg-zinc-800 hover:bg-fuchsia-600 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2">
-                            <span>▶</span> Escuchar en Spotify
+                            <span>▶</span> Spotify
                         </a>
                     </div>
                 </div>
-                <!-- Sencillo 3 -->
-                <div class="group glass-panel rounded-3xl overflow-hidden transition-all hover:translate-y-[-8px]">
+                <!-- Tarjeta 3 -->
+                <div class="group glass-panel rounded-3xl overflow-hidden transition-all hover:translate-y-[-5px]">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-bl from-zinc-800 to-fuchsia-900/40 opacity-60"></div>
                         <span class="text-6xl relative z-10 group-hover:scale-110 transition-transform duration-500">💌</span>
                     </div>
-                    <div class="p-8 text-left">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xl font-bold text-white">Mom, I Fell in Love</h3>
-                            <span class="text-fuchsia-500 text-[10px] font-black tracking-widest uppercase">Sencillo</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-6 leading-relaxed">
-                            Una narrativa honesta sobre la vulnerabilidad. Un himno para quienes aman con absoluta sinceridad, enfrentando el miedo con entrega.
-                        </p>
+                    <div class="p-6 text-left">
+                        <h3 class="text-xl font-bold text-white mb-2">Mom, I Fell in Love</h3>
+                        <p class="text-zinc-400 text-xs mb-6 leading-relaxed">Narrativa honesta sobre la vulnerabilidad. Un himno para quienes aman con absoluta sinceridad.</p>
                         <a href="https://open.spotify.com/intl-es/track/01AS7vpMTtYWy2qssgRBno?si=693a380f174344cf" target="_blank" class="w-full py-3 bg-zinc-800 hover:bg-fuchsia-600 rounded-xl font-bold text-xs transition-colors flex items-center justify-center gap-2">
-                            <span>▶</span> Escuchar en Spotify
+                            <span>▶</span> Spotify
                         </a>
                     </div>
                 </div>
@@ -219,36 +214,36 @@
         </div>
     </section>
 
-    <!-- Audiencia -->
-    <section id="audiencia" class="py-24 bg-zinc-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold display-font mb-4 text-white">Impacto Digital</h2>
-            <p class="text-zinc-400 mb-16 max-w-2xl mx-auto">Una comunidad activa y en expansión que valida la solidez de la propuesta artística.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div class="glass-panel p-8 rounded-2xl">
-                    <div class="text-fuchsia-500 text-5xl font-black mb-2 tracking-tight">1,072</div>
-                    <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Oyentes Mensuales</p>
-                </div>
-                <div class="glass-panel p-8 rounded-2xl">
-                    <div class="text-white text-5xl font-black mb-2 tracking-tight">+45%</div>
-                    <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Crecimiento Orgánico</p>
-                </div>
-                <div class="glass-panel p-8 rounded-2xl">
-                    <div class="text-white text-5xl font-black mb-2 tracking-tight">Top 3</div>
-                    <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">CDMX, Mérida, GDL</p>
+    <!-- Impacto -->
+    <section id="audiencia" class="py-20 bg-zinc-900/50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold display-font mb-10 text-white">Impacto</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <div class="text-fuchsia-500 text-4xl font-black mb-1">1,072</div>
+                        <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Oyentes Mensuales</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <div class="text-white text-4xl font-black mb-1">+45%</div>
+                        <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">Crecimiento Orgánico</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <div class="text-white text-4xl font-black mb-1">Top 3</div>
+                        <p class="text-[10px] text-zinc-500 uppercase font-bold tracking-widest">México, Mérida, GDL</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="glass-panel p-10 rounded-3xl">
-                    <h3 class="text-lg font-bold mb-8 text-left border-l-4 border-fuchsia-500 pl-4 text-white uppercase tracking-wider">Tendencia</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass-panel p-6 rounded-3xl">
+                    <h3 class="text-xs font-bold mb-6 border-l-4 border-fuchsia-500 pl-3 text-white uppercase tracking-wider">Histórico de Crecimiento</h3>
                     <div class="chart-container">
                         <canvas id="growthChart"></canvas>
                     </div>
                 </div>
-                <div class="glass-panel p-10 rounded-3xl">
-                    <h3 class="text-lg font-bold mb-8 text-left border-l-4 border-fuchsia-500 pl-4 text-white uppercase tracking-wider">Demografía</h3>
+                <div class="glass-panel p-6 rounded-3xl">
+                    <h3 class="text-xs font-bold mb-6 border-l-4 border-fuchsia-500 pl-3 text-white uppercase tracking-wider">Perfil de Audiencia</h3>
                     <div class="chart-container">
                         <canvas id="demoChart"></canvas>
                     </div>
@@ -257,207 +252,131 @@
         </div>
     </section>
 
-    <!-- Rider Técnico (RESTAURADO) -->
-    <section id="rider" class="py-24 bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold display-font mb-4 text-white">Especificaciones Técnicas</h2>
-                <p class="text-zinc-500 max-w-2xl mx-auto">Requerimientos detallados para asegurar la fidelidad sonora en cualquier escenario.</p>
+    <!-- Sección Técnica -->
+    <section id="rider" class="py-20 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold display-font mb-4 text-white">Especificaciones Técnicas</h2>
+                <div class="w-16 h-1 bg-fuchsia-600 mx-auto mb-8 rounded-full"></div>
             </div>
 
             <!-- Navegación de Pestañas -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button class="tab-btn px-8 py-3 rounded-full bg-fuchsia-600 text-white font-bold text-[10px] tracking-widest uppercase transition-all shadow-lg shadow-fuchsia-900/20" data-target="io-list">Input List</button>
-                <button class="tab-btn px-8 py-3 rounded-full bg-zinc-900 text-zinc-400 font-bold text-[10px] tracking-widest uppercase hover:text-white transition-all" data-target="backline">Equipamiento</button>
-                <button class="tab-btn px-8 py-3 rounded-full bg-zinc-900 text-zinc-400 font-bold text-[10px] tracking-widest uppercase hover:text-white transition-all" data-target="stage-plot">Stage Plot</button>
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button class="tab-btn px-6 py-2 rounded-full bg-fuchsia-600 text-white font-bold text-[10px] tracking-widest uppercase transition-all shadow-lg shadow-fuchsia-900/20" data-target="io-list">Input List</button>
+                <button class="tab-btn px-6 py-2 rounded-full bg-zinc-900 text-zinc-400 font-bold text-[10px] tracking-widest uppercase hover:text-white transition-all" data-target="backline">Equipamiento</button>
+                <button class="tab-btn px-6 py-2 rounded-full bg-zinc-900 text-zinc-400 font-bold text-[10px] tracking-widest uppercase hover:text-white transition-all" data-target="stage-plot">Stage Plot</button>
             </div>
 
-            <!-- Contenido: Input List (14 Canales Restaurados) -->
-            <div id="io-list" class="tab-content active glass-panel p-8 rounded-3xl overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="overflow-x-auto">
-                        <h3 class="text-sm font-bold text-fuchsia-400 mb-6 uppercase tracking-widest border-b border-zinc-800 pb-2">I/O Patch de Entrada</h3>
-                        <table class="w-full text-xs text-left border-collapse">
-                            <thead class="text-zinc-500 bg-zinc-900/50 uppercase">
-                                <tr>
-                                    <th class="px-3 py-3 border-b border-zinc-800">CH</th>
-                                    <th class="px-3 py-3 border-b border-zinc-800">Fuente</th>
-                                    <th class="px-3 py-3 border-b border-zinc-800">Mic / D.I.</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-zinc-300 divide-y divide-zinc-900">
-                                <tr><td class="px-3 py-2.5">01</td><td class="px-3 py-2.5">Kick</td><td class="px-3 py-2.5 font-medium">Shure Beta 52a</td></tr>
-                                <tr><td class="px-3 py-2.5">02</td><td class="px-3 py-2.5">Snare</td><td class="px-3 py-2.5 font-medium">Shure SM57</td></tr>
-                                <tr class="bg-fuchsia-900/5 text-fuchsia-400"><td class="px-3 py-2.5">03</td><td class="px-3 py-2.5">Hi-Hat</td><td class="px-3 py-2.5 font-medium">Sennheiser e614</td></tr>
-                                <tr><td class="px-3 py-2.5">04</td><td class="px-3 py-2.5">Tom 1</td><td class="px-3 py-2.5 font-medium">Sennheiser e604</td></tr>
-                                <tr><td class="px-3 py-2.5">05</td><td class="px-3 py-2.5">Tom 2</td><td class="px-3 py-2.5 font-medium">Sennheiser e604</td></tr>
-                                <tr><td class="px-3 py-2.5">06</td><td class="px-3 py-2.5">OH L</td><td class="px-3 py-2.5 font-medium">Sennheiser e614</td></tr>
-                                <tr><td class="px-3 py-2.5">07</td><td class="px-3 py-2.5">OH R</td><td class="px-3 py-2.5 font-medium">Sennheiser e614</td></tr>
-                                <tr><td class="px-3 py-2.5">08</td><td class="px-3 py-2.5">Bass</td><td class="px-3 py-2.5 font-medium">D.I. Box + Mic</td></tr>
-                                <tr><td class="px-3 py-2.5">09</td><td class="px-3 py-2.5">Gtr Orlando</td><td class="px-3 py-2.5 font-medium">SM57 / e609</td></tr>
-                                <tr><td class="px-3 py-2.5">10</td><td class="px-3 py-2.5">Gtr Rafa</td><td class="px-3 py-2.5 font-medium">D.I. Box</td></tr>
-                                <tr><td class="px-3 py-2.5">11</td><td class="px-3 py-2.5">Keys</td><td class="px-3 py-2.5 font-medium">D.I. Box</td></tr>
-                                <tr><td class="px-3 py-2.5">12</td><td class="px-3 py-2.5">Seq</td><td class="px-3 py-2.5 font-medium">D.I. Box</td></tr>
-                                <tr class="bg-fuchsia-600/10 text-white font-bold"><td class="px-3 py-3">13</td><td class="px-3 py-3">VOZ LEAD (KQ)</td><td class="px-3 py-3 text-fuchsia-400">Beta 58a Inalámbrico</td></tr>
-                                <tr><td class="px-3 py-2.5">14</td><td class="px-3 py-2.5 text-zinc-500 italic">Talkback</td><td class="px-3 py-2.5 font-medium text-zinc-500">SM58</td></tr>
-                            </tbody>
-                        </table>
+            <!-- Input List -->
+            <div id="io-list" class="tab-content active glass-panel p-6 rounded-2xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse min-w-[450px]">
+                        <thead class="text-zinc-500 bg-zinc-900/50 uppercase">
+                            <tr>
+                                <th class="px-4 py-3 border-b border-zinc-800">CH</th>
+                                <th class="px-4 py-3 border-b border-zinc-800">Instrumento</th>
+                                <th class="px-4 py-3 border-b border-zinc-800">Mic / D.I.</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-zinc-300 divide-y divide-zinc-900">
+                            <tr><td class="px-4 py-2.5">01</td><td class="px-4 py-2.5">Kick</td><td class="px-4 py-2.5">Beta 52a</td></tr>
+                            <tr><td class="px-4 py-2.5">02</td><td class="px-4 py-2.5">Snare</td><td class="px-4 py-2.5">SM57</td></tr>
+                            <tr><td class="px-4 py-2.5">03</td><td class="px-4 py-2.5 text-fuchsia-400 font-medium">Hi-Hat</td><td class="px-4 py-2.5">e614</td></tr>
+                            <tr><td class="px-4 py-2.5">04/05</td><td class="px-4 py-2.5">Toms</td><td class="px-4 py-2.5">e604</td></tr>
+                            <tr><td class="px-4 py-2.5">08</td><td class="px-4 py-2.5">Bajo</td><td class="px-4 py-2.5">D.I. Box</td></tr>
+                            <tr><td class="px-4 py-2.5">11</td><td class="px-4 py-2.5">Keys</td><td class="px-4 py-2.5">D.I. Box</td></tr>
+                            <tr class="bg-fuchsia-600/10 text-white font-bold"><td class="px-4 py-3">13</td><td class="px-4 py-3 uppercase">Voz Principal</td><td class="px-4 py-3 text-fuchsia-300">Beta 58a</td></tr>
+                            <tr><td class="px-4 py-2.5 text-zinc-600">14</td><td class="px-4 py-2.5 text-zinc-600">Talkback</td><td class="px-4 py-2.5 text-zinc-600">SM58</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Backline -->
+            <div id="backline" class="tab-content glass-panel p-8 rounded-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs">
+                    <div>
+                        <h4 class="text-fuchsia-500 font-bold uppercase tracking-widest text-[10px] mb-4">Backline Solicitado</h4>
+                        <ul class="space-y-4 text-zinc-300">
+                            <li class="flex items-start gap-2"><span class="text-fuchsia-600 mt-1">●</span> <span>Yamaha Stage Custom (20, 10, 12, 14)</span></li>
+                            <li class="flex items-start gap-2"><span class="text-fuchsia-600 mt-1">●</span> <span>Vox AC30 / Fender Twin Reverb</span></li>
+                            <li class="flex items-start gap-2"><span class="text-fuchsia-600 mt-1">●</span> <span>Radial J48 (5 unidades)</span></li>
+                        </ul>
                     </div>
-                    <div class="space-y-8">
-                        <div>
-                            <h3 class="text-sm font-bold text-fuchsia-400 mb-6 uppercase tracking-widest border-b border-zinc-800 pb-2">Mezclas de Monitoreo</h3>
-                            <table class="w-full text-xs text-left border-collapse">
-                                <thead class="text-zinc-500 bg-zinc-900/50 uppercase">
-                                    <tr>
-                                        <th class="px-3 py-3 border-b border-zinc-800">Mix</th>
-                                        <th class="px-3 py-3 border-b border-zinc-800">Destino</th>
-                                        <th class="px-3 py-3 border-b border-zinc-800">Sistema</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-zinc-300 divide-y divide-zinc-900">
-                                    <tr><td class="px-3 py-3 font-bold">1-2</td><td class="px-3 py-3 text-white">Killer Queen</td><td class="px-3 py-3">IEM Stereo + Wedge</td></tr>
-                                    <tr><td class="px-3 py-3 font-bold">3-4</td><td class="px-3 py-3">Batería</td><td class="px-3 py-3">IEM Stereo</td></tr>
-                                    <tr><td class="px-3 py-3 font-bold">5-6</td><td class="px-3 py-3">Gtr 1</td><td class="px-3 py-3">IEM Stereo</td></tr>
-                                    <tr><td class="px-3 py-3 font-bold">7-8</td><td class="px-3 py-3">Bajo</td><td class="px-3 py-3">IEM Stereo</td></tr>
-                                    <tr><td class="px-3 py-3 font-bold">9-10</td><td class="px-3 py-3">Keys / Gtr 2</td><td class="px-3 py-3">IEM Stereo</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="p-6 bg-zinc-950/40 rounded-2xl text-[11px] text-zinc-500 border border-zinc-800 leading-relaxed italic">
-                            * Nota para FOH: Se requiere compresión suave en CH 13 y Gate en percusiones. El monitoreo es estrictamente Stereo.
-                        </div>
+                    <div>
+                        <h4 class="text-fuchsia-500 font-bold uppercase tracking-widest text-[10px] mb-4">Monitoreo</h4>
+                        <ul class="space-y-4 text-zinc-300">
+                            <li class="flex items-start gap-2"><span class="text-zinc-500 mt-1">●</span> <span>Mix 1-2: Killer Queen (IEM Stereo)</span></li>
+                            <li class="flex items-start gap-2"><span class="text-zinc-500 mt-1">●</span> <span>Mix 3-4: Batería (IEM Stereo)</span></li>
+                            <li class="flex items-start gap-2"><span class="text-zinc-500 mt-1">●</span> <span>Sistemas Shure PSM 300</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- Contenido: Backline Restaurado -->
-            <div id="backline" class="tab-content glass-panel p-10 rounded-3xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="text-fuchsia-500 font-bold uppercase tracking-widest text-[11px] mb-4">Instrumentación & Amperaje</h4>
-                            <ul class="space-y-4 text-xs text-zinc-300">
-                                <li class="flex items-start gap-3">
-                                    <span class="w-1.5 h-1.5 bg-fuchsia-600 rounded-full mt-1.5"></span>
-                                    <span><strong>Drum Set:</strong> Yamaha Stage Custom (20", 10", 12", 14", 14s)</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-1.5 h-1.5 bg-fuchsia-600 rounded-full mt-1.5"></span>
-                                    <span><strong>Keys:</strong> Arturia Keylab 61 + Laptop/Seq (D.I.)</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-1.5 h-1.5 bg-fuchsia-600 rounded-full mt-1.5"></span>
-                                    <span><strong>Guitarras:</strong> Epiphone ES-335, Fender Stratocaster HSS</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-1.5 h-1.5 bg-fuchsia-600 rounded-full mt-1.5"></span>
-                                    <span><strong>Amps:</strong> Vox AC30 / Fender Twin, Ampeg SVT-CL 8x10</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="text-fuchsia-500 font-bold uppercase tracking-widest text-[11px] mb-4">Sistemas de Microfonía Requeridos</h4>
-                            <ul class="space-y-4 text-xs text-zinc-300">
-                                <li class="flex items-start gap-3">
-                                    <span class="w-1.5 h-1.5 bg-zinc-700 rounded-full mt-1.5"></span>
-                                    <span><strong>Vocales:</strong> Shure Axient AD2/B58a (Principal), SM58 (Talkback)</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-1.5 h-1.5 bg-zinc-700 rounded-full mt-1.5"></span>
-                                    <span><strong>Percusión:</strong> Beta 52a, MD421, e604 x2, e614 x3</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="w-1.5 h-1.5 bg-zinc-700 rounded-full mt-1.5"></span>
-                                    <span><strong>Infraestructura:</strong> 5x Radial J48, 17x XLR, 4x TRS</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contenido: Stage Plot Restaurado -->
-            <div id="stage-plot" class="tab-content glass-panel p-10 rounded-3xl">
-                <div class="text-center text-[10px] text-zinc-600 mb-8 uppercase tracking-[0.4em] font-black">Front of House (Público)</div>
-                <div class="h-1 w-32 bg-zinc-800 mx-auto mb-16 rounded-full"></div>
-                
-                <div class="relative w-full h-[450px] border border-zinc-800 rounded-3xl bg-zinc-950/50">
+            <!-- Stage Plot -->
+            <div id="stage-plot" class="tab-content glass-panel p-6 rounded-2xl overflow-x-auto">
+                <div class="stage-container">
+                    <div class="absolute top-4 left-1/2 -translate-x-1/2 text-[9px] text-zinc-600 uppercase font-black tracking-widest">Escenario / Fondo</div>
+                    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-24 h-1 bg-zinc-800 rounded-full"></div>
                     
-                    <!-- Vocal Principal (Centro Frente) -->
+                    <!-- Voz Principal -->
                     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                        <div class="w-16 h-16 rounded-full bg-fuchsia-600 flex items-center justify-center mb-2 shadow-[0_0_30px_rgba(192,38,211,0.4)] border-2 border-white/20">
+                        <div class="w-16 h-16 rounded-full bg-fuchsia-600 flex items-center justify-center mb-2 shadow-[0_0_25px_rgba(192,38,211,0.4)] border-2 border-white/20">
                             <span class="text-2xl">🎤</span>
                         </div>
-                        <span class="text-[10px] font-black uppercase text-white">Voz (KQ)</span>
-                        <span class="text-[8px] text-zinc-500">Mix 1-2</span>
+                        <span class="text-[10px] font-black uppercase text-white">Voz</span>
                     </div>
 
-                    <!-- Gtr 1 (Izquierda) -->
+                    <!-- Gtrs -->
                     <div class="absolute bottom-24 left-[15%] flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center mb-2">
-                            <span class="text-xl">🎸</span>
-                        </div>
-                        <span class="text-[9px] font-bold uppercase text-zinc-400">Orlando</span>
-                        <span class="text-[8px] text-zinc-600">Mix 5-6</span>
+                        <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center mb-1">🎸</div>
+                        <span class="text-[9px] font-bold text-zinc-500 uppercase">Gtr 1</span>
                     </div>
-
-                    <!-- Bajo (Derecha) -->
                     <div class="absolute bottom-24 right-[15%] flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center mb-2">
-                            <span class="text-xl">🎸</span>
-                        </div>
-                        <span class="text-[9px] font-bold uppercase text-zinc-400">Johsef</span>
-                        <span class="text-[8px] text-zinc-600">Mix 7-8</span>
+                        <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center mb-1">🎸</div>
+                        <span class="text-[9px] font-bold text-zinc-500 uppercase">Bajo</span>
                     </div>
 
-                    <!-- Batería (Centro Atrás) -->
-                    <div class="absolute top-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                        <div class="w-28 h-24 bg-zinc-900 border-2 border-zinc-800 rounded-2xl flex items-center justify-center mb-2 shadow-inner">
-                            <span class="text-4xl opacity-50">🥁</span>
-                        </div>
-                        <span class="text-[9px] font-bold uppercase text-zinc-400">Angel</span>
-                        <span class="text-[8px] text-zinc-600">Mix 3-4</span>
+                    <!-- Batería -->
+                    <div class="absolute top-24 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                        <div class="w-28 h-20 bg-zinc-900 border-2 border-zinc-800 rounded-2xl flex items-center justify-center mb-2 shadow-inner">🥁</div>
+                        <span class="text-[9px] font-bold text-zinc-400 uppercase">Drums</span>
                     </div>
 
-                    <!-- Keys (Atrás Izquierda) -->
-                    <div class="absolute top-20 left-[15%] flex flex-col items-center">
-                        <div class="w-20 h-10 bg-zinc-900 border border-zinc-700 rounded-lg flex items-center justify-center mb-2">
-                            <span class="text-lg">🎹</span>
-                        </div>
-                        <span class="text-[9px] font-bold uppercase text-zinc-400">Rafa</span>
-                        <span class="text-[8px] text-zinc-600">Mix 9-10</span>
+                    <!-- Keys -->
+                    <div class="absolute top-28 left-[10%] flex flex-col items-center">
+                        <div class="w-18 h-10 bg-zinc-900 border border-zinc-700 rounded-lg flex items-center justify-center mb-1">🎹</div>
+                        <span class="text-[9px] font-bold text-zinc-400 uppercase">Keys</span>
                     </div>
-
-                    <!-- Laptop/Seq Station -->
-                    <div class="absolute top-24 right-[10%] p-3 border border-zinc-800 bg-zinc-900/40 rounded flex flex-col items-center">
-                        <span class="text-xl">💻</span>
-                        <span class="text-[8px] font-bold uppercase text-zinc-600 mt-1">Seq / I/O</span>
+                    
+                    <!-- Seq -->
+                    <div class="absolute top-32 right-[10%] p-2.5 border border-zinc-800 bg-zinc-900/50 rounded-xl flex flex-col items-center">
+                        <span class="text-lg">💻</span>
+                        <span class="text-[7px] font-bold text-zinc-700 mt-1 uppercase">Seq</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pie de página -->
-    <footer class="py-24 bg-zinc-950 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold display-font text-white mb-10 tracking-tight">Booking & Contacto</h2>
-            <div class="flex flex-wrap justify-center gap-8 mb-16">
-                <a href="https://www.instagram.com/soykillerqueen?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-zinc-500 hover:text-fuchsia-500 transition-all font-bold tracking-widest text-[11px] uppercase">Instagram</a>
-                <a href="https://open.spotify.com/intl-es/artist/02XEmWWdAtjExVcIHO6wyV?si=wwbA-OknQjyqA5WNruaxoQ" target="_blank" class="text-zinc-500 hover:text-fuchsia-500 transition-all font-bold tracking-widest text-[11px] uppercase">Spotify</a>
-                <a href="https://youtube.com/@killerqueenmusic?si=9qBxYmjlVxXimaVL" target="_blank" class="text-zinc-500 hover:text-fuchsia-500 transition-all font-bold tracking-widest text-[11px] uppercase">YouTube</a>
+    <!-- Footer -->
+    <footer class="py-20 bg-zinc-950 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold display-font text-white mb-10 tracking-tight">Killer Queen</h2>
+            <div class="flex flex-wrap justify-center gap-10 mb-12">
+                <a href="https://www.instagram.com/soykillerqueen" target="_blank" class="text-zinc-500 hover:text-fuchsia-500 transition-all font-bold tracking-widest text-[10px] uppercase">Instagram</a>
+                <a href="https://open.spotify.com/intl-es/artist/02XEmWWdAtjExVcIHO6wyV" target="_blank" class="text-zinc-500 hover:text-fuchsia-500 transition-all font-bold tracking-widest text-[10px] uppercase">Spotify</a>
+                <a href="https://youtube.com/@killerqueenmusic" target="_blank" class="text-zinc-500 hover:text-fuchsia-500 transition-all font-bold tracking-widest text-[10px] uppercase">YouTube</a>
             </div>
-            <p class="text-zinc-600 text-[10px] uppercase font-bold tracking-widest mb-2">Mérida, Yucatán • México</p>
             <p class="text-zinc-700 text-[9px] uppercase font-bold tracking-[0.2em]">&copy; Killer Queen. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Lógica de la Aplicación -->
+    <!-- Lógica JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Comportamiento del Navbar al hacer scroll
+            // Navbar behavior
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 80) {
@@ -467,7 +386,7 @@
                 }
             });
 
-            // Lógica de Pestañas del Rider
+            // Tab logic para el Rider
             const tabBtns = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
 
@@ -487,27 +406,24 @@
                 });
             });
 
-            // Configuración Global de Chart.js
+            // Configuración de Gráficos (Chart.js)
             Chart.defaults.color = '#71717a'; 
             Chart.defaults.font.family = "'Inter', sans-serif";
 
-            // Gráfico de Crecimiento
-            const ctxGrowth = document.getElementById('growthChart').getContext('2d');
-            new Chart(ctxGrowth, {
+            new Chart(document.getElementById('growthChart').getContext('2d'), {
                 type: 'line',
                 data: {
                     labels: ['Jun', 'Ago', 'Oct', 'Dic', 'Feb'],
                     datasets: [{
-                        label: 'Oyentes',
                         data: [420, 580, 720, 910, 1072],
                         borderColor: '#c026d3',
-                        backgroundColor: 'rgba(192, 38, 211, 0.1)',
+                        backgroundColor: 'rgba(192, 38, 211, 0.08)',
                         borderWidth: 3,
                         tension: 0.4,
                         fill: true,
                         pointBackgroundColor: '#fff',
                         pointBorderColor: '#c026d3',
-                        pointRadius: 4
+                        pointRadius: 3
                     }]
                 },
                 options: {
@@ -515,28 +431,21 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.03)' } },
                         x: { grid: { display: false } }
                     }
                 }
             });
 
-            // Gráfico Demográfico (Colores Fucsia/Zinc Corregidos)
-            const ctxDemo = document.getElementById('demoChart').getContext('2d');
-            new Chart(ctxDemo, {
+            new Chart(document.getElementById('demoChart').getContext('2d'), {
                 type: 'doughnut',
                 data: {
                     labels: ['18-24', '25-34', '35-44', '45+'],
                     datasets: [{
                         data: [48, 32, 15, 5],
-                        backgroundColor: [
-                            '#c026d3', // Fucsia Intenso
-                            '#d946ef', // Fucsia Claro
-                            '#71717a', // Zinc Gris
-                            '#3f3f46'  // Zinc Oscuro
-                        ],
-                        hoverOffset: 12,
-                        borderWidth: 0
+                        backgroundColor: ['#c026d3', '#d946ef', '#71717a', '#3f3f46'],
+                        borderWidth: 0,
+                        hoverOffset: 15
                     }]
                 },
                 options: {
@@ -544,7 +453,7 @@
                     maintainAspectRatio: false,
                     cutout: '80%',
                     plugins: {
-                        legend: { position: 'right', labels: { usePointStyle: true, padding: 25 } }
+                        legend: { position: 'right', labels: { usePointStyle: true, padding: 15, font: { size: 10 } } }
                     }
                 }
             });
